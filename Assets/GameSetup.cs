@@ -13,7 +13,7 @@ public class GameSetup : MonoBehaviour {
 	public Transform Player2;
 
 	// Use this for initialization
-	void Start () 
+	IEnumerator Start () 
 	{
 		//Move walls to the correct location
 		topWall.size= new Vector2(mainCam.ScreenToWorldPoint(new Vector3(Screen.width * 2f, 0f, 0f)).x, 1f);
@@ -23,13 +23,16 @@ public class GameSetup : MonoBehaviour {
 		bottomWall.center = new Vector2(0f, mainCam.ScreenToWorldPoint(new Vector3(0f, 0f, 0f)).y - 0.5f);
 
 		leftWall.size= new Vector2(1f, mainCam.ScreenToWorldPoint(new Vector3(0f, Screen.height * 2f, 0f)).y);
-		leftWall.center = new Vector2(mainCam.ScreenToWorldPoint(new Vector3(0f, 0f, 0f)).x + 0.5f, 0f);
+		leftWall.center = new Vector2(mainCam.ScreenToWorldPoint(new Vector3(0f, 0f, 0f)).x - 0.2f, 0f);
 
 		rightWall.size= new Vector2(1f, mainCam.ScreenToWorldPoint(new Vector3(0f, Screen.height * 2f, 0f)).y);
-		rightWall.center = new Vector2(mainCam.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f)).x - 0.5f, 0f);
+		rightWall.center = new Vector2(mainCam.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f)).x + 0.2f, 0f);
 
-		Player1.position = new Vector2(mainCam.ScreenToWorldPoint(new Vector3(75, 0f, 0f)).x,0f);
-		Player2.position = new Vector2(mainCam.ScreenToWorldPoint(new Vector3(Screen.width - 75, 0f, 0f)).x, 0f);
+		Player1.position = new Vector2(mainCam.ScreenToWorldPoint(new Vector3(100, 0f, 0f)).x,0f);
+		Player2.position = new Vector2(mainCam.ScreenToWorldPoint(new Vector3(Screen.width - 100, 0f, 0f)).x, 0f);
+
+		yield return new WaitForSeconds(2);
+		audio.Play();
 	}
 
 }
